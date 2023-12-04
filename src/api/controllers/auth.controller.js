@@ -59,7 +59,7 @@ exports.loginAdopter = async (req, res) => {
 
 		const token = generateToken(adopter._id);
 
-		res.status(200).json({ message: 'Login successful', token });
+		res.status(200).json({ message: 'Login successful', adopterToken: token });
 	} catch (err) {
 		res
 			.status(500)
@@ -79,7 +79,9 @@ exports.loginAdmin = async (req, res) => {
 
 		const token = generateToken('admin');
 
-		res.status(200).json({ message: 'Admin login successful', token });
+		res
+			.status(200)
+			.json({ message: 'Admin login successful', adminToken: token });
 	} catch (err) {
 		res
 			.status(500)
