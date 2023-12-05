@@ -59,7 +59,11 @@ exports.loginAdopter = async (req, res) => {
 
 		const token = generateToken(adopter._id);
 
-		res.status(200).json({ message: 'Login successful', adopterToken: token });
+		res.status(200).json({
+			message: 'Login successful',
+			id: adopter._id,
+			adopterToken: token,
+		});
 	} catch (err) {
 		res
 			.status(500)
