@@ -11,6 +11,8 @@ router.get('/', applicationController.getAllApplications);
 // Get application by ID
 router.get('/:id', applicationController.getApplicationById);
 
+router.get('/adopter/:id', applicationController.getApplicationByAdopterId);
+
 // Update application by ID
 router.put('/:id', applicationController.updateApplicationById);
 

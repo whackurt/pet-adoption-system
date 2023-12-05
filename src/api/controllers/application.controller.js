@@ -52,6 +52,25 @@ exports.getApplicationById = async (req, res) => {
 	}
 };
 
+exports.getApplicationByAdopterId = async (req, res) => {
+	try {
+		const applications = await Application.find({ adopterId: req.params.id })
+			.populate('adopterId')
+			.populate('petId');
+		if (!applications) {
+			return res.status(404).json({ message: 'Application not found' });
+		}
+		res.status(200).json({
+			message: 'Application fetched successfully',
+			data: { applications },
+		});
+	} catch (err) {
+		res
+			.status(500)
+			.json({ message: 'Error getting application', error: err.message });
+	}
+};
+
 // Update application by ID
 exports.updateApplicationById = async (req, res) => {
 	try {
