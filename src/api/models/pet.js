@@ -26,6 +26,10 @@ const petSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+	photos: {
+		type: [String],
+		required: true,
+	},
 });
 
 // Create the Pet model based on the schema
