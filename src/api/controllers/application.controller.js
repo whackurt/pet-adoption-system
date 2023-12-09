@@ -1,4 +1,5 @@
 const Application = require('../models/application');
+const Pet = require('../models/pet');
 
 // Create a new application
 exports.createApplication = async (req, res) => {
@@ -96,6 +97,16 @@ exports.updateApplicationById = async (req, res) => {
 // Delete application by ID
 exports.deleteApplicationById = async (req, res) => {
 	try {
+		const application = await Application.findById(req.params.id);
+
+		await Pet.findByIdAndUpdate(
+			application.petId,
+			{ availableForAdoption: true },
+			{
+				new: true,
+			}
+		);
+
 		const deletedApplication = await Application.findByIdAndDelete(
 			req.params.id
 		);
